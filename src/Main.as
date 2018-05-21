@@ -51,7 +51,6 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(MouseEvent.RIGHT_CLICK, function ():void{});
-			// entry point
 			
 			// Configuration de la scène
 			stage.align = StageAlign.TOP_LEFT;
