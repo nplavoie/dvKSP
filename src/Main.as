@@ -1,18 +1,18 @@
 package
 {
-	import flash.display.Bitmap;
+    import flash.display.Bitmap;
     import flash.display.BitmapData;
-	import flash.display.Sprite;
+    import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageDisplayState;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.geom.Matrix;
+    import flash.events.MouseEvent;
+    import flash.geom.Matrix;
     import flash.ui.Keyboard;
-	import EmbedIcons;
-	import Constantes;
+    import EmbedIcons;
+    import Constantes;
 	
 	/**
 	 * ...
@@ -94,20 +94,6 @@ package
         private function _onKeyUp(event:KeyboardEvent):void
         {
 			if (event.keyCode == Keyboard.ESCAPE) _ui.exitLinkMode();
-			//else if (event.keyCode == Keyboard.O) _ui.openFile()
-			//else if (event.keyCode == Keyboard.S) _ui.save();
-			
-			/*if (event.keyCode == Keyboard.A) _ui.addStage();
-			else if (event.keyCode == Keyboard.C) _ui.toggleCondition();
-			else if (event.keyCode == Keyboard.D) _ui.removeStage();
-			else if (event.keyCode == Keyboard.L) _ui.toggleLinkMode();
-			else if (event.keyCode == Keyboard.O) _ui.openFile();
-			else if (event.keyCode == Keyboard.S) _ui.saveData();
-			else if (event.keyCode == Keyboard.U) _ui.deleteLink();
-			else if (event.keyCode == Keyboard.V) _ui.toggleVerbose();
-			else if (event.keyCode == Keyboard.ENTER) _ui.calculateDv();
-			else if (event.keyCode == Keyboard.SPACE) _ui.restart();
-			else if (event.keyCode > 48 && event.keyCode < 58) _ui.setImpactSpeed(event.keyCode);*/
 		}
     }
 	
