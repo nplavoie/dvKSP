@@ -6,9 +6,10 @@
     import flash.display.StageAlign;
     import flash.display.StageDisplayState;
     import flash.display.StageScaleMode;
-	    import flash.events.Event;
+    import flash.events.Event;
     import flash.events.KeyboardEvent;
-    import flash.events.MouseEvent;    import flash.geom.Matrix;
+    import flash.events.MouseEvent;
+    import flash.geom.Matrix;
     import flash.ui.Keyboard;
     import EmbedIcons;
     import Constantes;
@@ -41,7 +42,7 @@
 
 		    //envoi les dimensions du Stage -> public static
 		    GlobalVariables.stageW = stage.stageWidth;
-			    GlobalVariables.stageH = stage.stageHeight;
+		    GlobalVariables.stageH = stage.stageHeight;
 		}
         
 		/* EVENTS */
