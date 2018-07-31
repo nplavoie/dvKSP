@@ -22,8 +22,6 @@
 		private var _referencePlanet:String = "kerbin";
 		private var _dV_Vac:Number = 0, _dV_Atm:Number = 0;
 		private var _parts:Vector.<Parts>;
-		private var _partsHidden:Boolean = false;
-		private var _isFocused:Boolean = false;
 		private var _partsData:Vector.<Array>, _inheritedPartsData:Vector.<Array>;
 
 		public function Stages() {
@@ -48,8 +46,6 @@
 
 			// Gestion de la souris
             addEventListener(MouseEvent.MOUSE_DOWN, _onMouseDown);
-			addEventListener(MouseEvent.MOUSE_OVER, function ():void{_isFocused = true});
-			addEventListener(MouseEvent.MOUSE_OUT, function ():void{_isFocused = false});
 			
 			//modPanel stage event
 			EventManager.addEventListener('modPanelOpened', function():void{if (GlobalVariables.currentPart != -1) _conditionalPartsDisplay() else {_modPanel.y = 36, _modPanel.x = 33 }});
@@ -110,8 +106,7 @@
 				_parts[i].x = locMatrix[i][0];
 				_parts[i].y = locMatrix[i][1];
 			}
-			if (_partsHidden) _conditionalPartsDisplay();
-			else if(_modPanel.parent != null) setChildIndex(_modPanel, numChildren - 1);
+			if(_modPanel.parent != null) setChildIndex(_modPanel, numChildren - 1);
 		}
 		
 		private function _regenPartsNum():void
@@ -166,17 +161,15 @@
 		}
 		
 		private function _conditionalPartsDisplay():void {
-			if (_isFocused) {
-				var len:int = int(_parts.length), protectedId:int = GlobalVariables.currentPart, isEditMode:Boolean = GlobalVariables.modPanelOpened, ipart:Parts;
-				if (len != 0){
-					for (var i:int = 0; i < len; i++)
-					{
-						ipart = _parts[i];
-						if (isEditMode){
-							if (protectedId != ipart.getNum) if (ipart.parent != null) removeChild(ipart);
-						}else {
-							if (ipart.parent == null) addChild(ipart);
-						}
+			var len:int = int(_parts.length), protectedId:int = GlobalVariables.currentPart, isEditMode:Boolean = GlobalVariables.modPanelOpened, ipart:Parts;
+			if (len != 0){
+				for (var i:int = 0; i < len; i++)
+				{
+					ipart = _parts[i];
+					if (isEditMode){
+						if (protectedId != ipart.getNum) if (ipart.parent != null) removeChild(ipart);
+					}else {
+						if (ipart.parent == null) addChild(ipart);
 					}
 				}
 			}
@@ -394,7 +387,7 @@
 			Log.setText = "Text input (top to bottom) : quantity or payload mass (t), fuel in tank (%), thrust for engine (%) - Press Enter to accept - ", EventManager.dispatchEvent(new Event('updateLog'));
 			super._onKeyUp(event);
 		}
-
+		
 		//GETTERS AND SETTERS related functions
 		internal function set setNum(value:int):void {
 			_num = value;

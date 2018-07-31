@@ -32,10 +32,12 @@
 		
 		public function Properties () {
 			addEventListener(MouseEvent.RIGHT_MOUSE_UP, _openModPanel);
+			EventManager.addEventListener('stageMouseOut', function():void{_closeModPanel()});
 		}
 		
 		protected function _closeModPanel():void {
 			GlobalVariables.modPanelOpened = false;
+			GlobalVariables.activeEditedStage = -1;
 			if (_modPanel.parent != null) removeChild(_modPanel);
 			// Gestion du clavier
             removeEventListener(KeyboardEvent.KEY_UP, _onKeyUp);
@@ -45,6 +47,7 @@
 		protected function _openModPanel(event:Event):void {
 			if (!GlobalVariables.modPanelOpened) {
 				GlobalVariables.modPanelOpened = true;
+				GlobalVariables.activeEditedStage = GlobalVariables.activeStage;
 				if (_modPanel.parent == null) addChild(_modPanel);
 				// Gestion du clavier
 				addEventListener(KeyboardEvent.KEY_UP, _onKeyUp);

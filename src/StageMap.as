@@ -51,6 +51,15 @@ package
 			//Add the first stage			
 			_resetStage();
 			
+			//Mouse Event dispatch
+			//create invisible mask for mouse to click on
+			var rectangle:Shape = new Shape; // initializing the variable named rectangle
+			rectangle.graphics.beginFill(0x000000,0); // choosing the colour for the fill, here it is red
+			rectangle.graphics.drawRect(0, 0, GlobalVariables.stageW, GlobalVariables.stageH); // (x spacing, y spacing, width, height)
+			rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
+			addChild(rectangle); // adds the rectangle to the stage
+			addEventListener(MouseEvent.MOUSE_UP, _onMouseUp);
+			
 			//selected stage event
 			EventManager.addEventListener('selectStage', _onStageSelect);
 			EventManager.addEventListener('selectStage', _onStageEvent);
@@ -290,6 +299,12 @@ package
 		}
 
 		//EVENT related functions
+		private function _onMouseUp(e:Event):void {
+			if(GlobalVariables.activeEditedStage > -1) {
+				if (!_stages[GlobalVariables.activeEditedStage].hitTestPoint(mouseX, mouseY)) EventManager.dispatchEvent(new Event('stageMouseOut'));
+			}
+		}
+		
 		private function _processXML(e:Event):void {
 			_xml = new XML(e.target.data);
 			_addMenu();
