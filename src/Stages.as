@@ -46,6 +46,7 @@
 
 			// Gestion de la souris
             addEventListener(MouseEvent.MOUSE_DOWN, _onMouseDown);
+			addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, _onMouseDown);
 			
 			//modPanel stage event
 			EventManager.addEventListener('modPanelOpened', function():void{if (GlobalVariables.currentPart != -1) _conditionalPartsDisplay() else {_modPanel.y = 36, _modPanel.x = 33 }});
